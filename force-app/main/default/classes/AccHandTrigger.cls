@@ -4,7 +4,7 @@ public class AccHandTrigger {
        Set<id> setOfAccId= New Set<id>();
        List<Contact> updatedConList= New List<Contact>();
         System.debug('inside method===>');
-
+     // adding a comment to test the git configuration
        /* Map<Id,Account> accMap = new Map<Id,Account>();
 
         if(!Trigger.new.isEmpty())
