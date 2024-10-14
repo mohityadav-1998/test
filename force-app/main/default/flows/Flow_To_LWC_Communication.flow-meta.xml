@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <environments>Default</environments>
+    <interviewLabel>Flow To LWC Communication {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Flow To LWC Communication</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <name>Display_Screen</name>
+        <label>Display Screen</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Display1</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); font-size: 17px; font-family: &amp;quot;Open Sans&amp;quot;, Tahoma, Arial; color: rgb(48, 48, 48);&quot;&gt;Directly from LWC component :&lt;/strong&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 17px; font-family: &amp;quot;Open Sans&amp;quot;, Tahoma, Arial; color: rgb(48, 48, 48);&quot;&gt;&amp;nbsp;{!LWC.lwcInput}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;background-color: rgb(255, 255, 255); font-size: 17px; font-family: &amp;quot;Open Sans&amp;quot;, Tahoma, Arial; color: rgb(48, 48, 48);&quot;&gt;Showing Value from Variable in Flow&lt;/strong&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 17px; font-family: &amp;quot;Open Sans&amp;quot;, Tahoma, Arial; color: rgb(48, 48, 48);&quot;&gt;&amp;nbsp;: {!getInputValue}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Flow_To_LWC_Communication</name>
+        <label>Flow To LWC Communication</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Display_Screen</targetReference>
+        </connector>
+        <fields>
+            <name>Flow_Input</name>
+            <dataType>String</dataType>
+            <fieldText>Flow Input</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>LWC</name>
+            <extensionName>c:lWCInsideScreenFlow</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>reactiveValue</name>
+                <value>
+                    <elementReference>Flow_Input</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>Lwc_Input</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>LWC.lwcInput</elementReference>
+            </defaultValue>
+            <fieldText>Lwc Input</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>DisplaysValues</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(48, 48, 48); font-family: &amp;quot;Open Sans&amp;quot;, Tahoma, Arial; font-size: 17px; background-color: rgb(255, 255, 255);&quot;&gt;Directly from LWC component :&lt;/strong&gt;&lt;span style=&quot;color: rgb(48, 48, 48); font-family: &amp;quot;Open Sans&amp;quot;, Tahoma, Arial; font-size: 17px; background-color: rgb(255, 255, 255);&quot;&gt;&amp;nbsp;{!LWC.lwcInput}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(48, 48, 48); font-family: &amp;quot;Open Sans&amp;quot;, Tahoma, Arial; font-size: 17px; background-color: rgb(255, 255, 255);&quot;&gt;Showing Value from Variable in Flow&lt;/strong&gt;&lt;span style=&quot;color: rgb(48, 48, 48); font-family: &amp;quot;Open Sans&amp;quot;, Tahoma, Arial; font-size: 17px; background-color: rgb(255, 255, 255);&quot;&gt;&amp;nbsp;: {!getInputValue}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Flow_To_LWC_Communication</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>getInputValue</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <elementReference>LWC.lwcInput</elementReference>
+        </value>
+    </variables>
+</Flow>
